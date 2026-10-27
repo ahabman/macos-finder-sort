@@ -40,4 +40,10 @@ APPLESCRIPT
 
 add_trigger 46 modified "Finder sort: Date Modified (newest first)"  # M
 add_trigger 45 name "Finder sort: Name (A to Z)"                     # N
+# BTT 3.579 keeps triggers added over AppleScript in memory and writes them to its
+# data store on quit; without this, the next BTT restart drops them.
+osascript -e 'quit app "BetterTouchTool"'
+while pgrep -qf 'MacOS/BetterTouchTool$'; do sleep 0.5; done
+open -a BetterTouchTool
+
 echo "Added BTT triggers. Grant BetterTouchTool Accessibility if not already granted."
